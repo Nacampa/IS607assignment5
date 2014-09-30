@@ -1,0 +1,50 @@
+# IS607 Assignment 5
+# Neil Acampa
+
+# 1 - Write down 3 questions that you might want to answwer based on this data
+
+#  What is the overall percentage of those polled preferring Cullen Sink 
+#  What percetage of those polled preferring Cullen Sink are from from Edinburgh or Glasgow (by city)
+#  What  percentage of those polled preferring Cullen Sink are 25 or over (by age)
+
+
+
+library(plyr)
+require(plyr)
+install.packages("devtools")
+library(dplyr)
+devtools::install_github("hadley/tidyr")
+
+install.packages("tidyr")
+require(tidyr)
+install.packages("ggplot2")
+library(ggplot2)
+
+city       <- c("Edinburg","Edinburg","Glasgow","Glasgow")
+age        <- c("16-24","25+","16-4","25+")
+response1  <- c("Yes","Yes","Yes","Yes")
+response2  <- c("No","No","No","No")
+freq1      <- c(80100,14300,99400,150400)
+freq2      <- c(35900, 214800, 43000, 207000)
+
+(scotlanddf  <- data.frame(city,age,response1, response2, freq1, freq2))
+
+save(scotlanddf, file="c:/Users/nacampa/Documents/scotlanddf")
+
+scotlanddf
+
+scotlanddf %>%
+  gather(key,value, city:age) %>%
+  separate(key, c("variable", "type"), -2) %>%
+  spread(variable, value)
+%>%
+  
+  scotlanddf %>%
+  gather(key,value, response1:response2) %>%
+  separate(key, c("variable", "type"), -2) %>%
+  spread(variable, value)
+%>%
+  
+  
+  
+  
